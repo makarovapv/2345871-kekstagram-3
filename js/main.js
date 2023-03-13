@@ -1,19 +1,13 @@
-function generateRandomNumberInRange(min, max) {
-  const rand = min + Math.random() * (max - min + 1);
-  return Math.floor(rand);
+function getRandomPositiveInteger(a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 }
 
-
-function checkLenght(stringToCheck, maxLength) {
-  stringToCheck = String(stringToCheck);
-  const lengthOfString = length(stringToCheck);
-  if (lengthOfString <= maxLength) {
-    return true;
-  }
-  else {
-    return false;
-  }
+function checkStringLength(string, length) {
+  return string.length <= length;
 }
 
-generateRandomNumberInRange();
-checkLenght();
+getRandomPositiveInteger();
+checkStringLength();
