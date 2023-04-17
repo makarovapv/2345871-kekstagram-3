@@ -1,4 +1,5 @@
-import './util.js';
-import './data.js';
 import { createPublication } from './data.js';
-createPublication();
+import { drawPictures } from './pictures.js';
+
+const publ = createPublication();
+drawPictures(publ);
