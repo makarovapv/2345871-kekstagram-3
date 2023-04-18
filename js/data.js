@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, getRandomArrayElement} from './util.js';
+import {getRandomPositiveInteger, getRandomArrayElement} from './utils.js';
 
 const DESCRIPTIONS = [
   'Это я в Дубае, я сейчас отдыхаю',
@@ -18,15 +18,19 @@ const DESCRIPTIONS = [
   'Закат',
 ];
 
-function createPublication(i) {
-  const publication = {
-    id: i,
-    url: `photos/${i}.jpg`,
-    description: getRandomArrayElement(DESCRIPTIONS),
-    likes: getRandomPositiveInteger(15,200),
-    comments: getRandomPositiveInteger(0,200),
-  };
-  return publication;
+function createPublication() {
+  const array = [];
+  for (let i = 1; i <= 25; i++) {
+    const publication = (j) => ({
+      id: j,
+      url: `photos/${j}.jpg`,
+      description: getRandomArrayElement(DESCRIPTIONS),
+      likes: getRandomPositiveInteger(15,200),
+      comments: getRandomPositiveInteger(0,200),
+    });
+    array.push(publication(i));
+  }
+  return array;
 }
 
 export {DESCRIPTIONS, createPublication};
