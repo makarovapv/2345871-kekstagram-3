@@ -11,7 +11,7 @@ closeButton.addEventListener('click', (evt) => {
   closeWindow();
 });
 
-export const closeOnButton = (evt) => {
+const closeOnButton = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeWindow();
