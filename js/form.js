@@ -18,9 +18,9 @@ const closeOnButton = (evt) => {
   }
 };
 
-export function closeWindow() {
+export function closeWindow(discard = true) {
   hideWindow();
-  cleanForm();
+  if (discard) {cleanForm();}
   removeListener();
 }
 

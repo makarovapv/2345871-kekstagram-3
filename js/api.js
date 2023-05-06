@@ -18,7 +18,7 @@ export const sendData = (evt) => {
     },
   )
     .then((response) => {
-      if (response) {
+      if (response.ok) {
         closeWindow();
         showSuccessMessage();
       } else {
