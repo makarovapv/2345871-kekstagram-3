@@ -1,7 +1,6 @@
-import { makeListener, removeListener} from './effects.js';
+import { makeListener, removeListener } from './effects.js';
 import { isEscapeKey } from './utils.js';
 import { resize } from './scale.js';
-
 
 const imgForm = document.querySelector('.img-upload__form');
 const closeButton = imgForm.querySelector('#upload-cancel');
@@ -12,7 +11,7 @@ closeButton.addEventListener('click', (evt) => {
   closeWindow();
 });
 
-const closeOnButton = (evt) => {
+export const closeOnButton = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeWindow();
@@ -20,11 +19,15 @@ const closeOnButton = (evt) => {
 };
 
 export function closeWindow() {
+  hideWindow();
+  cleanForm();
+  removeListener();
+}
+
+export function hideWindow() {
   imgOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', closeOnButton);
-  cleanForm();
-  removeListener();
 }
 
 export function openWindow() {
@@ -39,7 +42,7 @@ imgForm.addEventListener('change', (evt) => {
   openWindow();
 });
 
-function cleanForm() {
+export function cleanForm() {
   document.querySelector('.text__hashtags').value = '';
   document.querySelector('.text__description').value = '';
   imgForm.querySelector('.img-upload__preview img').classList = [];

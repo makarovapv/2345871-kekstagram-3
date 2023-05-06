@@ -1,16 +1,11 @@
 import { showAlert } from './alert.js';
-import { closeWindow } from './form.js';
+import { closeWindow, hideWindow } from './form.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
-import {createThumbnail} from './pictures.js';
-
+import { createThumbnail } from './pictures.js';
 
 export function getData () {
   fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-    })
+    .then((response) => response.json())
     .then((response) => createThumbnail(response))
     .catch(() => showAlert('Не удалось загрузить изображения'));
 }
@@ -24,14 +19,15 @@ export const sendData = (evt) => {
   )
     .then((response) => {
       if (response) {
+        closeWindow();
         showSuccessMessage();
-        closeWindow(true);
       } else {
-        showErrorMessage('Не удалось отправить форму. Попробуйте ещё раз');
         closeWindow(false);
+        showErrorMessage();
       }
     })
     .catch(() => {
-      showErrorMessage('Не удалось отправить форму. Попробуйте ещё раз');
+      hideWindow();
+      showErrorMessage();
     });
 };
